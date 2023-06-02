@@ -1,4 +1,5 @@
 // This is an example of a declarative pipeline in Jenkins
+def gv
 pipeline { // Specifies we want to create a pipeline
 
     agent any  // Here we declare where we want our pipeline to be executed
@@ -12,19 +13,32 @@ pipeline { // Specifies we want to create a pipeline
     }
     stages {  // The stages is where the actual workflow is specified
 
+        stage("init") {
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
+            }
+        }
         stage("build") { // A task to be executed in a Jenkins pipeline workflow
             steps {  // Steps to execute a task in the workflow
-                echo 'building the app...'
+                script {
+                  gv.buildApp()
+                }
             }
         }
         stage("test") {
             steps {
-                echo 'testing the app...'
+                script {
+                    gv.testApp()
+                }
             }
         }
         stage("deploy") {
             steps {
-                echo 'deploying the app...'
+                script {
+                    gv.deployApp()
+                }
             }
         }
     }
