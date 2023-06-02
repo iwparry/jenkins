@@ -3,6 +3,7 @@ pipeline { // Specifies we want to create a pipeline
 
     agent any  // Here we declare where we want our pipeline to be executed
                // i.e. in a cluster of Jenkins slaves and master we specify which node the job will be executed
+    
     parameters { // We can create parameters for our Jenkins projects in this file
         choice(name: 'Branch', choices: ['main', 'dev'])
     }
