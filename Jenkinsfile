@@ -31,7 +31,9 @@ pipeline { // Specifies we want to create a pipeline
     }
     post { // Execute some logic after all stages have been executed
     always { // conditions = [always,success,failure]
-        //
+        script {
+            echo 'Pipeline is done'
+        }
     }
     }
 }
